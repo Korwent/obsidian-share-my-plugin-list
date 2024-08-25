@@ -154,7 +154,7 @@ export default class ShareMyPlugin extends Plugin {
 			// this.debug(key)
 			const m = plugins[key].manifest;
 			this.debug(m)
-			let line = `- [⬇️](${m.installLink}) [**${m.name}**](${m.pluginUrl})`
+			let line = `- [⬇️]  (${m.pluginName})  (${m.installLink}) [**${m.name}**](${m.pluginUrl})`
 			if (m.author && m.authorUrl) {
 				line += ` by [*${m.author2}*](${m.authorUrl})`
 			}
@@ -275,6 +275,7 @@ export default class ShareMyPlugin extends Plugin {
 				plugin.manifest["pluginUrl"] = `https://obsidian.md/plugins?id=${plugin.manifest.id}`;
 				plugin.manifest["author2"] = plugin.manifest.author?.replace(/<.*?@.*?\..*?>/g, "").trim(); // remove email address
 				plugin.manifest["installLink"] = `obsidian://SP-install?id=${plugin.manifest.id}&enable=true`;
+				plugin.manifest["pluginName"] = `[[${plugin.manifest.id}]]`;
 				plugins[name] = plugin;
 			} catch (e) {
 				console.error(name, e);
